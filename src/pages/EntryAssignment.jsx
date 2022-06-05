@@ -66,12 +66,15 @@ const EntryAssignment = () => {
     
   }, [contract]); // contract
 
-  const onIncrement = () => {
+  const onIncrement = async () => {
     /*
      * 請在此處透過 contract 物件，向智能合約呼叫 setIncrement 方法
      * 並且將目前錢包地址帶入 from 參數
      * 如果寫成功，則點擊 counter + 1 按鈕時，狐狸錢包會跳出交易資訊
      */
+    if (contract) {
+      await contract.setIncrement({ from: currentAccount });
+    }
   };
 
   useEffect(() => {
